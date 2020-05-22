@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class TableController {
 
-    protected static String wastesPath = "C:/Users/lns/IdeaProjects/budget/src/com/company/Resources/wastes.txt";
+    protected static final String wastesPath = "C:/Users/lns/IdeaProjects/budget/src/com/company/Resources/wastes.txt";
 
     public static String getWastesPath() {
         return wastesPath;
@@ -23,7 +23,7 @@ public class TableController {
             File file = new File(wastesPath);
 
             if (!file.exists()) {
-                boolean success = file.createNewFile();
+                file.createNewFile();
             }
 
             FileWriter fw = new FileWriter(file, true);
@@ -41,7 +41,7 @@ public class TableController {
                 if (bw!=null)
                     bw.close();
             } catch (Exception ex) {
-                System.out.println("Error in closing the BufferedWriter" + ex);
+                ex.printStackTrace();
             }
         }
     }
@@ -61,7 +61,7 @@ public class TableController {
                     }
                 }
             } catch (IOException e) {
-                System.err.format("IOException: %s%n", e);
+                e.printStackTrace();
             }
         return wastes;
     }
@@ -83,8 +83,26 @@ public class TableController {
                 }
             }
         } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
+            e.printStackTrace();
         }
         return waste;
+    }
+
+    // Очистка файла
+    public static void clearFile() {
+        File file = new File(wastesPath);
+
+        if (file.exists()) {
+            try {
+                file.delete();
+                file.createNewFile();
+                JOptionPane.showMessageDialog(new JOptionPane(),
+                        "Файл очищен",
+                        "Ок",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+        }
     }
 }

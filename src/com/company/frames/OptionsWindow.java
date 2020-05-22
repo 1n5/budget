@@ -1,23 +1,21 @@
 package com.company.frames;
 
 import com.company.controllers.OptionsController;
+import com.company.controllers.TableController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class OptionsWindow extends JFrame {
 
     private JPanel grid;
-    private static String[] boxOptions;
     private JComboBox<String> typeOfWaste;
     private JTextField newTypeOfWaste;
     private JButton addOption, removeOption, clearFile;
 
     public OptionsWindow() {
-        this.setResizable(true);
-        this.setVisible(true);
+        this.setResizable(false);
+        this.setVisible(false);
         this.setTitle("Настройки");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setPreferredSize(new Dimension(500, 120));
@@ -27,7 +25,7 @@ public class OptionsWindow extends JFrame {
 
     private void initLayout() {
         grid = new JPanel();
-        GridLayout layout = new GridLayout(3, 2, 5, 5);
+        GridLayout layout = new GridLayout(3, 2, 5, 7);
         grid.setLayout(layout);
         initContent();
         grid.add(typeOfWaste);
@@ -39,17 +37,15 @@ public class OptionsWindow extends JFrame {
         pack();
     }
 
-
     private void initContent() {
-        boxOptions = OptionsController.getBoxOptions();
+        String[] boxOptions = OptionsController.getBoxOptions();
         if (boxOptions != null) typeOfWaste = new JComboBox<>(boxOptions);
         typeOfWaste.setPreferredSize(new Dimension(100, 50));
 
         newTypeOfWaste = new JTextField();
         addOption = new JButton("Добавить тип затрат");
         removeOption = new JButton("Удалить тип затрат");
-        clearFile = new JButton("Очистить файл");
-
+        clearFile = new JButton("Очистить файл затрат");
 
         addOption.addActionListener(e -> {
             String text = newTypeOfWaste.getText();
@@ -57,14 +53,33 @@ public class OptionsWindow extends JFrame {
                     JOptionPane.showMessageDialog(grid,
                             "Поле пустое",
                             "Ошибка",
-                            JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.ERROR_MESSAGE);
                 } else {
                     OptionsController.addBoxOption(newTypeOfWaste.getText());
                 }
         });
 
-        removeOption.addActionListener(e -> OptionsController.deleteBoxOptions((String) typeOfWaste.getSelectedItem()));
+        removeOption.addActionListener(e -> {
+            if (confirmation() == JOptionPane.YES_OPTION) {
+                OptionsController.deleteBoxOptions((String) typeOfWaste.getSelectedItem());
+            }
+        });
 
+        clearFile.addActionListener(e -> {
+            if (confirmation() == JOptionPane.YES_OPTION) {
+                TableController.clearFile();
+            }
+        });
     }
 
+    private int confirmation() {
+        Object[] options1 = {"Да", "Нет"};
+
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Вы уверены?"));
+
+        return JOptionPane.showOptionDialog(this, panel, "Внимание!",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE,
+                null, options1, null);
+    }
 }

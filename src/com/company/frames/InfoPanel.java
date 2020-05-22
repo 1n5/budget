@@ -28,7 +28,7 @@ public class InfoPanel extends JPanel {
         wastedInfo.setText("Денег потрачено: " + wasted);
     }
 
-    private String initStat() {
+    public static String initStat() {
 
         ArrayList<String> type = new ArrayList<>();
         Collections.addAll(type, BottomPanel.getBoxOptions());
@@ -42,9 +42,7 @@ public class InfoPanel extends JPanel {
         for (int i = 0; i < type.size(); i++) {
             sb.append(type.get(i)).append(": ").append(wastes[i]).append(" ");
         }
-        //sb.append(type.get(i) + ": " + wastes[i] + " ");
         return sb.toString();
     }
-
 
 }

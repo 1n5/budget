@@ -51,7 +51,7 @@ public class BottomPanel extends JPanel {
         c1.gridx = 0;
         c1.gridy = 1;
         this.add(moneyWasted, c1);
-        //Запрет на воод в текстовое поле любы символов, кроме цифр
+        //Запрет на воод в текстовое поле любых символов, кроме цифр
         ((AbstractDocument)moneyWasted.getDocument()).setDocumentFilter(new DocumentFilter(){
             Pattern regEx = Pattern.compile("\\d*");
             @Override
@@ -82,15 +82,6 @@ public class BottomPanel extends JPanel {
         c3.gridy = 1;
         this.add(submit, c3);
         submit.addActionListener(e -> submitAction());
-
-        /*
-        submit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                submitAction();
-            }
-        } );
-
-         */
     }
 
     public void submitAction() {

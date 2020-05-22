@@ -8,16 +8,7 @@ import java.util.Scanner;
 
 public class OptionsController {
 
-    protected static String boxOptionsPath = "C:/Users/lns/IdeaProjects/budget/src/com/company/Resources/boxoptions.txt";
-    protected static String tempBoxOptionsPath = "C:/Users/lns/IdeaProjects/budget/src/com/company/Resources/tempboxoptions.txt";
-
-    public static String getBoxOptionsPath() {
-        return boxOptionsPath;
-    }
-
-    public static void setBoxOptionsPath(String boxOptionsPath) {
-        OptionsController.boxOptionsPath = boxOptionsPath;
-    }
+    private static final String boxOptionsPath = "C:/Users/lns/IdeaProjects/budget/src/com/company/Resources/boxoptions.txt";
 
     // Получение массива всех типов затрат
     public static String[] getBoxOptions() {
@@ -42,14 +33,14 @@ public class OptionsController {
             File file = new File(boxOptionsPath);
 
             if (!file.exists()) {
-                boolean success = file.createNewFile();
+                file.createNewFile();
             }
 
             FileWriter fw = new FileWriter(file, true);
             bw = new BufferedWriter(fw);
             bw.write(option + "\n");
             JOptionPane.showMessageDialog(new JOptionPane(),
-                    "Опция добавлена \nПоявится после перезагрузки программы",
+                    "Опция добавлена",
                     "Ок",
                     JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ioe) {
@@ -60,50 +51,55 @@ public class OptionsController {
                 if (bw!=null)
                     bw.close();
             } catch (Exception ex) {
-                System.out.println("Error in closing the BufferedWriter" + ex);
+                ex.printStackTrace();
             }
         }
-
     }
 
     // Удаление типа затрат
     public static void deleteBoxOptions(String target) {
-
-        createTempWithout(target);
-
-
-    }
-
-
-    private static void createTempWithout(String target) {
         BufferedWriter bw = null;
-        try {
-            File file = new File(tempBoxOptionsPath);
 
-            if (!file.exists()) {
-                boolean success = file.createNewFile();
+        String[] options = getBoxOptions();
+        List<String> freshOptions = new ArrayList<>();
+
+        if (options != null) {
+            for (String s : options) {
+                if (!s.equals(target)) freshOptions.add(s);
             }
+        }
 
-            String[] options = getBoxOptions();
+        try {
+            File file = new File(boxOptionsPath);
+            if (file.exists()) {
+                file.delete();
+            }
+            file.createNewFile();
 
             FileWriter fw = new FileWriter(file, true);
             bw = new BufferedWriter(fw);
-            if (options != null) {
-                for (String s : options) {
-                    if (!s.equals(target)) bw.write(s + "\n");
-                }
+
+            String[] writeOptions = new String[freshOptions.size()];
+            writeOptions = freshOptions.toArray(writeOptions);
+
+            for (String s : writeOptions) {
+                bw.write(s + "\n");
             }
+
+            JOptionPane.showMessageDialog(new JOptionPane(),
+                    "Опция удалена",
+                    "Ок",
+                    JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
         finally {
             try {
-                if (bw!=null)
+                if (bw != null)
                     bw.close();
             } catch (Exception ex) {
-                System.out.println("Error in closing the BufferedWriter" + ex);
+                ex.printStackTrace();
             }
         }
     }
-
 }

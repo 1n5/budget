@@ -11,6 +11,11 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Так как график за месяц является приложением, повторное нажатие на кнопку крашит программу. Пока не используется,
+ * в дальнейшем либо изменить реализацию, либо отказаться от этой идеи
+ */
+
 public class GraphWindow extends Application {
 
 
@@ -19,9 +24,6 @@ public class GraphWindow extends Application {
 
         ArrayList<String> type = new ArrayList<>();
         Collections.addAll(type, BottomPanel.getBoxOptions());
-        //for (String s : BottomPanel.getBoxOptions()) {
-          //  type.add(s);
-        //}
 
         int[] values = new int[type.size()];
         for (int i = 0; i < values.length; i++) {
@@ -43,6 +45,7 @@ public class GraphWindow extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+
     }
 
     public static void go() {
