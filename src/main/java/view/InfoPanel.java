@@ -4,29 +4,26 @@ import controllers.TableController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class InfoPanel extends JPanel {
 
-    private static final JLabel wastedInfo = new JLabel();
+    private final JLabel wastedInfoLabel = new JLabel();
 
-    public InfoPanel(boolean statOrInfo) {
+    public InfoPanel() {
         this.setSize(WIDTH, HEIGHT /3);
         this.setVisible(true);
         GridLayout layout = new GridLayout();
         this.setLayout(layout);
-        JLabel wastedStat = new JLabel(initStat());
         setWastedInfo();
-        JLabel label = statOrInfo ? wastedInfo : wastedStat;
-        this.add(label);
+        this.add(wastedInfoLabel);
     }
 
-    public static void setWastedInfo() {
+    public void setWastedInfo() {
         int wasted = TableController.getWastedMoney();
-        wastedInfo.setText("Денег потрачено: " + wasted);
+        wastedInfoLabel.setText("Денег потрачено: " + wasted);
     }
+/* Не используется в данный момент
 
     public static String initStat() {
 
@@ -44,5 +41,7 @@ public class InfoPanel extends JPanel {
         }
         return sb.toString();
     }
+
+ */
 
 }

@@ -8,7 +8,7 @@ public class MainWindow extends JFrame {
     protected static final int MAIN_WIDTH = 500;
     protected static final int MAIN_HEIGHT = 120;
 
-    private final InfoPanel infoPanel = new InfoPanel(true);
+    private final InfoPanel infoPanel = new InfoPanel();
     private final TopPanel topPanel = new TopPanel();
     private final BottomPanel bottomPanel = new BottomPanel();
 

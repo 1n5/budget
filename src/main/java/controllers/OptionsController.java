@@ -31,13 +31,9 @@ public class OptionsController {
     public static void addBoxOption (String option) {
         BufferedWriter bw = null;
         try {
-            File file = boxOptions;
 
-            if (!file.exists()) {
-                file.createNewFile();
-            }
 
-            FileWriter fw = new FileWriter(file, true);
+            FileWriter fw = new FileWriter(boxOptions, true);
             bw = new BufferedWriter(fw);
             bw.write(option + "\n");
             JOptionPane.showMessageDialog(new JOptionPane(),
@@ -77,7 +73,7 @@ public class OptionsController {
             }
             file.createNewFile();
 
-            FileWriter fw = new FileWriter(file, true);
+            FileWriter fw = new FileWriter(boxOptions, true);
             bw = new BufferedWriter(fw);
 
             String[] writeOptions = new String[freshOptions.size()];
