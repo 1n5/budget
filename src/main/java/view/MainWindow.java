@@ -9,7 +9,7 @@ public class MainWindow extends JFrame {
     protected static final int MAIN_HEIGHT = 120;
 
     private final InfoPanel infoPanel = new InfoPanel();
-    private final TopPanel topPanel = new TopPanel();
+    private final MenuPanel menuPanel = new MenuPanel();
     private final BottomPanel bottomPanel = new BottomPanel();
 
     public MainWindow(String title) {
@@ -26,7 +26,7 @@ public class MainWindow extends JFrame {
         GridLayout layout = new GridLayout(3, 1);
         this.setLayout(layout);
         this.add(infoPanel);
-        this.add(topPanel);
+        this.add(menuPanel);
         this.add(bottomPanel);
     }
 

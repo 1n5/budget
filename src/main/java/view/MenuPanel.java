@@ -8,61 +8,58 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TopPanel extends JPanel {
+public class MenuPanel extends JPanel {
 
-    private final OptionsWindow ow = new OptionsWindow();
-    private final StatWindow sw = new StatWindow();
-    private final JFrame stat = showStat();
+    private final OptionsWindow optionsWindow = new OptionsWindow();
+    private final StatWindow statWindow = new StatWindow();
+    private final JFrame statFrame = initStatFrame();
 
-    public TopPanel() {
+    public MenuPanel() {
         this.setSize(WIDTH, HEIGHT /3);
         this.initButtons();
         this.setVisible(true);
     }
 
     private void initButtons() {
-        JButton statistics = new JButton("Таблица затрат");
-        JButton graph = new JButton("Общая статистика затрат");
-        JButton settings = new JButton("Настройки");
+        JButton statButton = new JButton("Таблица затрат");
+        JButton graphButton = new JButton("Общая статистика затрат");
+        JButton settingsButton = new JButton("Настройки");
 
-        statistics.addActionListener(e -> sw.setVisible(true));
-        graph.addActionListener(e -> stat.setVisible(true));
-        settings.addActionListener(e -> ow.setVisible(true));
+        statButton.addActionListener(e -> statWindow.setVisible(true));
+        graphButton.addActionListener(e -> statFrame.setVisible(true));
+        settingsButton.addActionListener(e -> optionsWindow.setVisible(true));
 
         GridBagLayout layout = new GridBagLayout();
         this.setLayout(layout);
-
-        //Кнопка вывода таблицы
+        
         GridBagConstraints c1 = new GridBagConstraints();
         c1.fill = GridBagConstraints.HORIZONTAL;
         c1.weightx = 1;
         c1.weighty = 0;
         c1.gridx = 0;
         c1.gridy = 0;
-        this.add(statistics, c1);
+        this.add(statButton, c1);
 
-        //Кнопка вывода графика
         GridBagConstraints c3 = new GridBagConstraints();
         c3.fill = GridBagConstraints.HORIZONTAL;
         c3.weightx = 1;
         c3.weighty = 0;
         c3.gridx = 1;
         c3.gridy = 0;
-        this.add(graph, c3);
+        this.add(graphButton, c3);
 
-        //Кнопка вывода панели опций
         GridBagConstraints c2 = new GridBagConstraints();
         c2.fill = GridBagConstraints.HORIZONTAL;
         c2.weightx = 1;
         c1.weighty = 0;
         c2.gridx = 2;
         c2.gridy = 0;
-        this.add(settings, c2);
+        this.add(settingsButton, c2);
 
         this.setVisible(true);
     }
 
-    private JFrame showStat() {
+    private JFrame initStatFrame() {
         JFrame stat = new JFrame();
 
         JTable table = new JTable();
