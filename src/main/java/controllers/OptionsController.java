@@ -8,12 +8,13 @@ import java.util.Scanner;
 
 public class OptionsController {
 
-    private static final String boxOptionsPath = "C:/Users/lns/IdeaProjects/budget/src/com/company/Resources/boxoptions.txt";
+    private static final String BOX_OPTIONS_PATH = OptionsController.class.getClassLoader().getResource("boxOptions.txt").getFile();
+    private static File boxOptions = new File(BOX_OPTIONS_PATH);
 
     // Получение массива всех типов затрат
     public static String[] getBoxOptions() {
         try {
-            Scanner sc = new Scanner(new File(boxOptionsPath));
+            Scanner sc = new Scanner(boxOptions);
             List<String> lines = new ArrayList<>();
             while (sc.hasNextLine()) {
                 lines.add(sc.nextLine());
@@ -30,7 +31,7 @@ public class OptionsController {
     public static void addBoxOption (String option) {
         BufferedWriter bw = null;
         try {
-            File file = new File(boxOptionsPath);
+            File file = boxOptions;
 
             if (!file.exists()) {
                 file.createNewFile();
@@ -70,7 +71,7 @@ public class OptionsController {
         }
 
         try {
-            File file = new File(boxOptionsPath);
+            File file = boxOptions;
             if (file.exists()) {
                 file.delete();
             }
