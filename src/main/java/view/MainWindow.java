@@ -9,15 +9,15 @@ public class MainWindow extends JFrame {
     protected static final int MAIN_HEIGHT = 120;
     protected static final String VERSION = "0.01";
 
-    private final InfoPanel panel = new InfoPanel(true);
-    private final TopPanel panel1 = new TopPanel();
-    private final BottomPanel panel2 = new BottomPanel();
+    private final InfoPanel infoPanel = new InfoPanel(true);
+    private final TopPanel topPanel = new TopPanel();
+    private final BottomPanel bottomPanel = new BottomPanel();
 
-    public MainWindow() {
+    public MainWindow(String title) {
         this.setSize(MAIN_WIDTH, MAIN_HEIGHT);
         this.setResizable(false);
         this.setVisible(true);
-        this.setTitle("Budget app, v." + VERSION);
+        this.setTitle(title);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.initGui();
@@ -26,9 +26,9 @@ public class MainWindow extends JFrame {
     public void initGui() {
         GridLayout layout = new GridLayout(3, 1);
         this.setLayout(layout);
-        this.add(panel);
-        this.add(panel1);
-        this.add(panel2);
+        this.add(infoPanel);
+        this.add(topPanel);
+        this.add(bottomPanel);
     }
 
 
