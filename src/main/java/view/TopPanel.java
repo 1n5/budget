@@ -1,6 +1,6 @@
-package com.company.frames;
+package view;
 
-import com.company.controllers.TableController;
+import controllers.TableController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +15,7 @@ public class TopPanel extends JPanel {
     private final JFrame stat = showStat();
 
     public TopPanel() {
-        this.setSize(MainWindow.WIDTH, MainWindow.HEIGHT/3);
+        this.setSize(WIDTH, HEIGHT /3);
         this.initButtons();
         this.setVisible(true);
     }

@@ -1,4 +1,4 @@
-package com.company.controllers;
+package controllers;
 
 import java.io.*;
 import javax.swing.*;

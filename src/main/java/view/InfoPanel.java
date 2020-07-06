@@ -1,6 +1,6 @@
-package com.company.frames;
+package view;
 
-import com.company.controllers.TableController;
+import controllers.TableController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ public class InfoPanel extends JPanel {
     private static final JLabel wastedInfo = new JLabel();
 
     public InfoPanel(boolean statOrInfo) {
-        this.setSize(MainWindow.WIDTH, MainWindow.HEIGHT/3);
+        this.setSize(WIDTH, HEIGHT /3);
         this.setVisible(true);
         GridLayout layout = new GridLayout();
         this.setLayout(layout);

@@ -1,4 +1,4 @@
-package com.company.frames;
+package view;
 
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
@@ -9,8 +9,8 @@ import java.awt.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.company.controllers.OptionsController;
-import com.company.controllers.TableController;
+import controllers.OptionsController;
+import controllers.TableController;
 
 public class BottomPanel extends JPanel {
 
@@ -19,7 +19,7 @@ public class BottomPanel extends JPanel {
     private JTextField moneyWasted;
 
     public BottomPanel() {
-        this.setSize(MainWindow.WIDTH, MainWindow.HEIGHT/3);
+        this.setSize(WIDTH, HEIGHT /3);
         this.placeButtons();
         this.setVisible(true);
     }

@@ -1,6 +1,6 @@
-package com.company.frames;
+package view;
 
-import com.company.controllers.TableController;
+import controllers.TableController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

@@ -1,5 +1,4 @@
-package com.company;
-import com.company.frames.MainWindow;
+import view.MainWindow;
 
 public class Main {
 

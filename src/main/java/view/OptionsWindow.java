@@ -1,7 +1,7 @@
-package com.company.frames;
+package view;
 
-import com.company.controllers.OptionsController;
-import com.company.controllers.TableController;
+import controllers.OptionsController;
+import controllers.TableController;
 
 import javax.swing.*;
 import java.awt.*;
